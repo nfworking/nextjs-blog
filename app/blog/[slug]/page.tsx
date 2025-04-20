@@ -16,7 +16,8 @@ async function getData(slug: string) {
     return data;
 }
 
-export default async function BlogArticle({ params }: { params: { slug: string } }) {
+export default async function BlogArticle(props: { params: Promise<{ slug: string }> }) {
+    const params = await props.params;
     if (!params || !params.slug) {
         throw new Error("Slug is required");
     }
